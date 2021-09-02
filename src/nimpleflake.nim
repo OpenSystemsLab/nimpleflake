@@ -1,5 +1,5 @@
 from times import epochTime
-from math import random, randomize
+from random import rand, randomize
 
 const
   DEFAULT_EPOCH = 1420070400  ## Epoch for nimpleflake timestamps, starts at the year 2015
@@ -14,9 +14,9 @@ const
 
 randomize()
 
-proc getrandbits(k: int): int =
+proc getrandbits(k: int): int {.inline.} =
   for i in 0..k:
-    var f = int(random(DEFAULT_EPOCH))
+    var f = rand(DEFAULT_EPOCH)
     if f mod 2 != 0:
       result = result or (1 shl (i %% 64))
 
